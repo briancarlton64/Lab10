@@ -10,7 +10,7 @@ public class DrawPanel extends JPanel {
     public void addShape(Shape shape){
         shapeList.add(shape);
     }
-
+    public void clearShapes(){shapeList.clear();}
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
