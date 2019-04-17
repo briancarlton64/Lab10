@@ -13,3 +13,5 @@ The result is something that looks a bit like the 90's design, which is appropri
 After all the Shape classes were implemented by specifying how the Point[] location array was to be initialized and populated based on the shape, most drawing methods were contained in parent classes are were generic enough to apply to all the children classes. This greatly simplified the code, as in the case of all the polygons, which are drawn in identical ways.
 # Conclusion
 In conclusion, this lab demonstrated basic GUI and graphics concepts by implementing algorithms for drawing basic geometric shapes and using those algorithms appropriately for a Swing-based window.
+# Bonus Gif
+![alt text](https://user-images.githubusercontent.com/47227872/56260682-c1427200-609d-11e9-95b0-a4c5ed8e2e5b.gif)
