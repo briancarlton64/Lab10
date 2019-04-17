@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>PolyLineTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestRunner (Apr 16, 2019 9:49:51 PM)</a> &gt; <a href="../../index.html" class="el_group">lab10</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">PolyLineTest.java</span></div><h1>PolyLineTest.java</h1><pre class="source lang-java linenums">/**
+ * Test cases for the PolyLine
+ * 
+ * DO NOT CHANGE
+ * 
+ * @author Stephen
+ * @version April 11, 2019
+ * Lab 10
+ */
+
+import static org.junit.Assert.*;
+
+import java.awt.Color;
+import java.awt.Point;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+<span class="fc" id="L19">public class PolyLineTest</span>
+{
+<span class="fc" id="L21">    private static PolyLine pl1 = new PolyLine(new Point(100, 100), new Point(150, 150), 50, Color.BLACK, true);</span>
+<span class="fc" id="L22">    private static Point pl1UL = new Point(100, 100);</span>
+<span class="fc" id="L23">    private static Point pl1LL = new Point(100, 150);</span>
+<span class="fc" id="L24">    private static Point pl1UR = new Point(150, 150);</span>
+<span class="fc" id="L25">    private static Point pl1LR = new Point(150, 200);</span>
+<span class="fc" id="L26">    private static PolyLine pl2 = new PolyLine(new Point(50, 70), new Point(100, 100), -25, Color.CYAN, false);</span>
+<span class="fc" id="L27">    private static Point pl2UL = new Point(50, 70);</span>
+<span class="fc" id="L28">    private static Point pl2LL = new Point(50, 45);</span>
+<span class="fc" id="L29">    private static Point pl2UR = new Point(100, 100);</span>
+<span class="fc" id="L30">    private static Point pl2LR = new Point(100, 75);</span>
+
+    /**
+     * plectangle construction
+     */
+    @Test
+    public void testPolyLineConstructorPointsArrayLength()
+    {
+<span class="fc" id="L38">        Point[] pts = pl1.getLocation();</span>
+<span class="fc" id="L39">        Assert.assertEquals(4, pts.length);</span>
+<span class="fc" id="L40">    }</span>
+    
+    /**
+     * plectangle construction: points
+     */
+    @Test
+    public void testPolyLineConstructorCalculatedPoints()
+    {
+<span class="fc" id="L48">        Point[] pts1 = pl1.getLocation();</span>
+<span class="fc" id="L49">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L51">                ShapeUtils.pointInSet(pts1, pl1UL));</span>
+<span class="fc" id="L52">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L54">                ShapeUtils.pointInSet(pts1, pl1LL));</span>
+<span class="fc" id="L55">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L57">                ShapeUtils.pointInSet(pts1, pl1LR));</span>
+<span class="fc" id="L58">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L60">                ShapeUtils.pointInSet(pts1, pl1UR));</span>
+        
+<span class="fc" id="L62">        Point[] pts2 = pl2.getLocation();</span>
+<span class="fc" id="L63">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L65">                ShapeUtils.pointInSet(pts2, pl2UL));</span>
+<span class="fc" id="L66">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L68">                ShapeUtils.pointInSet(pts2, pl2LL));</span>
+<span class="fc" id="L69">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L71">                ShapeUtils.pointInSet(pts2, pl2LR));</span>
+<span class="fc" id="L72">        Assert.assertTrue(&quot;Expected point not appearing in PolyLine. Make sure that the points determine the base line &quot;</span>
+                + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L74">                ShapeUtils.pointInSet(pts2, pl2UR));</span>
+<span class="fc" id="L75">    }</span>
+    
+    /**
+     * Unfilled constructor
+     */
+    @Test
+    public void testPolyLineConstructorUnfilled()
+    {
+<span class="fc" id="L83">        Assert.assertFalse(&quot;PolyLine fill incorrect.&quot;, pl2.isFilled());</span>
+<span class="fc" id="L84">    }</span>
+    
+    /**
+     * Filled constructor
+     */
+    @Test
+    public void testPolyLineConstructorFilled()
+    {
+<span class="fc" id="L92">        Assert.assertTrue(&quot;PolyLine fill incorrect.&quot;, pl1.isFilled());</span>
+<span class="fc" id="L93">    }</span>
+    
+    /**
+     * Color constructor
+     */
+    @Test
+    public void testPolyLineConstructorColor()
+    {
+<span class="fc" id="L101">        Color clr1 = pl1.getColor();</span>
+<span class="fc" id="L102">        Color clr2 = pl2.getColor();</span>
+<span class="fc" id="L103">        Assert.assertEquals(&quot;PolyLine color incorrect.&quot;, Color.BLACK, clr1);</span>
+<span class="fc" id="L104">        Assert.assertEquals(&quot;PolyLine color incorrect.&quot;, Color.CYAN, clr2);</span>
+<span class="fc" id="L105">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>TestRunner (Apr 16, 2019 9:49:51 PM)</div></body></html>

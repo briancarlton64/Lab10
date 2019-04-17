@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DiamondTestOfficial.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestRunner (Apr 16, 2019 9:49:51 PM)</a> &gt; <a href="../../index.html" class="el_group">lab10</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">DiamondTestOfficial.java</span></div><h1>DiamondTestOfficial.java</h1><pre class="source lang-java linenums">import java.awt.Color;
+import java.awt.Point;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * Test cases for the Diamond
+ * 
+ * DO NOT CHANGE
+ * 
+ * @author Monique Shotande
+ * @version April 11, 2019
+ * Lab 10
+ */
+<span class="fc" id="L16">public class DiamondTestOfficial</span>
+{
+    // Setup
+<span class="fc" id="L19">    private static Diamond d1 = new Diamond(new Point(100, 100), 50, Color.BLACK, true);</span>
+<span class="fc" id="L20">    private static int delta1 = (int) (50 / Math.sqrt(2));</span>
+<span class="fc" id="L21">    private static Point left1 = new Point(100, 100);</span>
+<span class="fc" id="L22">    private static Point upper1 = new Point((100 + delta1), (100 - delta1));</span>
+<span class="fc" id="L23">    private static Point lower1 = new Point((100 + delta1), (100 + delta1));</span>
+<span class="fc" id="L24">    private static Point right1 = new Point((100 + 2 * delta1), 100);</span>
+<span class="fc" id="L25">    private static Diamond d2 = new Diamond(new Point(100, 100), 100, Color.CYAN, false);</span>
+<span class="fc" id="L26">    private static int delta2 = (int) (100 / Math.sqrt(2));</span>
+<span class="fc" id="L27">    private static Point left2 = new Point(100, 100);</span>
+<span class="fc" id="L28">    private static Point upper2 = new Point((100 + delta2), (100 - delta2));</span>
+<span class="fc" id="L29">    private static Point lower2 = new Point((100 + delta2), (100 + delta2));</span>
+<span class="fc" id="L30">    private static Point right2 = new Point((100 + 2 * delta2), 100);</span>
+
+    /**
+     * Verify the points defining the diamond are determined correctly
+     * The vertex locations, edge length, color, and fill flag
+     */
+    @Test
+    public void testDiamondConstructorComputedPoints()
+    {
+<span class="fc" id="L39">        Point[] pts1 = d1.getLocation();</span>
+<span class="fc" id="L40">        Assert.assertEquals(4, pts1.length);</span>
+<span class="fc" id="L41">        Assert.assertTrue(ShapeUtils.pointInSet(pts1, left1));</span>
+<span class="fc" id="L42">        Assert.assertTrue(ShapeUtils.pointInSet(pts1, lower1, 1));</span>
+<span class="fc" id="L43">        Assert.assertTrue(ShapeUtils.pointInSet(pts1, right1));</span>
+<span class="fc" id="L44">        Assert.assertTrue(ShapeUtils.pointInSet(pts1, upper1, 1));</span>
+        
+<span class="fc" id="L46">        Point[] pts2 = d2.getLocation();</span>
+<span class="fc" id="L47">        Assert.assertEquals(4, pts2.length);</span>
+<span class="fc" id="L48">        Assert.assertTrue(ShapeUtils.pointInSet(pts2, left2));</span>
+<span class="fc" id="L49">        Assert.assertTrue(ShapeUtils.pointInSet(pts2, lower2, 1));</span>
+<span class="fc" id="L50">        Assert.assertTrue(ShapeUtils.pointInSet(pts2, right2));</span>
+<span class="fc" id="L51">        Assert.assertTrue(ShapeUtils.pointInSet(pts2, upper2, 1));</span>
+<span class="fc" id="L52">    }</span>
+    
+    /**
+     * Verify the diamond is appropriately filled or not
+     */
+    @Test
+    public void testDiamondConstructorFilled()
+    {
+<span class="fc" id="L60">        Assert.assertTrue(d1.isFilled());</span>
+<span class="fc" id="L61">        Assert.assertFalse(d2.isFilled());</span>
+<span class="fc" id="L62">    }</span>
+    
+    /**
+     * Verify the diamond has been alloted the appropriate color
+     */
+    @Test
+    public void testDiamondConstructorColor()
+    {
+<span class="fc" id="L70">        Color clr1 = d1.getColor();</span>
+<span class="fc" id="L71">        Color clr2 = d2.getColor();</span>
+<span class="fc" id="L72">        Assert.assertEquals(Color.BLACK, clr1);</span>
+<span class="fc" id="L73">        Assert.assertEquals(Color.CYAN, clr2);</span>
+<span class="fc" id="L74">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>TestRunner (Apr 16, 2019 9:49:51 PM)</div></body></html>

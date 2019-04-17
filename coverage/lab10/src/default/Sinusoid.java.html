@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Sinusoid.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestRunner (Apr 16, 2019 9:49:51 PM)</a> &gt; <a href="../../index.html" class="el_group">lab10</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">Sinusoid.java</span></div><h1>Sinusoid.java</h1><pre class="source lang-java linenums">import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+/**
+ * FINISH THIS. Follow the TODOs. 
+ * 
+ * Class to represent and define how a sinusoid is drawn
+ * 
+ * @author MoSho
+ * @author Brian
+ * @version April 16, 2019
+ */
+public class Sinusoid extends Shape 
+{
+	/** Number of pixels within one cycle relative to the frequency */
+	public static final int samplerate = 20;
+	
+	/** The number of complete periods to draw for the sinusoid */
+	private int duration;
+	
+	/** Frequency of the sinusoid in Hz (number of cycles in one period) */
+	private int frequency;
+	
+	/** Height of the sinusoid */
+	private int amplitude;
+	
+	/**
+	 * Creates a sinusoid curve
+	 * General formula: y = a * sin(2*PI*freq * t) 
+	 * 
+	 * Helpful links: 
+	 * 		http://hyperphysics.phy-astr.gsu.edu/hbase/Waves/funhar.html
+	 * 		https://www.ck12.org/book/CK-12-Precalculus-Concepts/section/5.5/
+	 * 
+	 * @param color Color for the curve
+	 * @param start Position in the image to start the curve
+	 * @param length The number of periods to draw for the curve (Notes: 1 period = 2*PI / freq)
+	 * @param freq The number of cycles per single period (Notes: freq = 2*PI / period)
+	 * @param height The amplitude of the curve
+	 */
+	public Sinusoid(Color color, Point start, int length, int freq, int height) 
+	{
+<span class="fc" id="L46">		super(color, false);</span>
+<span class="fc" id="L47">		duration = length;</span>
+<span class="fc" id="L48">		frequency = freq;</span>
+<span class="fc" id="L49">		amplitude = height;</span>
+		
+		// Set up point computation
+<span class="fc" id="L52">		int nPoints = samplerate * frequency; // points per single cycle</span>
+<span class="fc" id="L53">		int timeFrame = duration * nPoints;  // total number of points for the duration of the signal</span>
+		
+<span class="fc" id="L55">		location = new Point[timeFrame];</span>
+<span class="fc" id="L56">		location[0] = start;</span>
+
+		// Set the wave offsets for x and y as teh starting point of the sinusoid
+<span class="fc" id="L59">		int x0 = location[0].x;</span>
+<span class="fc" id="L60">		int y0 = location[0].y; </span>
+		
+		// Change in the x position
+<span class="fc" id="L63">		int dx = (int) (1. * samplerate / frequency);</span>
+		// Angular frequency
+<span class="fc" id="L65">		double angFreq = 2 * Math.PI * frequency;</span>
+		
+		// Compute points
+<span class="fc bfc" id="L68" title="All 2 branches covered.">		for (int i = 0; i &lt; timeFrame; i++)</span>
+		{
+			// position in the time domain of the sinusoid
+<span class="fc" id="L71">			double t = 1. * i / nPoints;</span>
+			// convert time to radians
+<span class="fc" id="L73">			double rad = angFreq * t;</span>
+			
+
+			//y = yOffset + amplitude * sin(radians)
+			//x = xOffset + i * dx;
+<span class="fc" id="L78">			int xNext = x0+i*dx;</span>
+<span class="fc" id="L79">			int yNext = y0 + (int) (amplitude * Math.sin(rad));</span>
+			
+<span class="fc" id="L81">			location[i]= new Point(xNext,yNext);</span>
+		}
+<span class="fc" id="L83">	}</span>
+
+	/* (non-Javadoc)
+	 * @see Drawable#draw(java.awt.Graphics)
+	 * 
+	 * The stroke width of the signal is set to 5.
+	 * Uses a sequence of line segments to draw a sinusoidal wave
+	 */
+	@Override
+	public void draw(Graphics graphics) 
+	{
+        // Set the color and stroke
+<span class="nc" id="L95">		Graphics2D g2d = (Graphics2D) graphics;</span>
+<span class="nc" id="L96">		g2d.setColor(this.getColor());</span>
+<span class="nc" id="L97">		g2d.setStroke(new BasicStroke(5));</span>
+        
+<span class="nc" id="L99">        int nPoints = location.length;</span>
+        
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        for(int i=1;i&lt;location.length;i++){</span>
+<span class="nc" id="L102">        	g2d.drawLine(location[i-1].x,location[i-1].y, location[i].x,location[i].y);</span>
+		}
+
+<span class="nc" id="L105">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>TestRunner (Apr 16, 2019 9:49:51 PM)</div></body></html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SquareTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestRunner (Apr 16, 2019 9:49:51 PM)</a> &gt; <a href="../../index.html" class="el_group">lab10</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">SquareTest.java</span></div><h1>SquareTest.java</h1><pre class="source lang-java linenums">
+
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.awt.*;
+
+/**
+ * Test cases for the Square
+ *
+ * @author Brian
+ * @version April 16, 2019
+ * Lab 10
+ */
+<span class="fc" id="L15">public class SquareTest {</span>
+<span class="fc" id="L16">    private static Square pl1 = new Square(new Point(100, 100), 50, Color.BLACK, true);</span>
+<span class="fc" id="L17">    private static Point pl1UL = new Point(100, 100);</span>
+<span class="fc" id="L18">    private static Point pl1LL = new Point(100, 150);</span>
+<span class="fc" id="L19">    private static Point pl1UR = new Point(150, 100);</span>
+<span class="fc" id="L20">    private static Point pl1LR = new Point(150, 150);</span>
+<span class="fc" id="L21">    private static Square pl2 = new Square(new Point(0, 0), 25, Color.CYAN, false);</span>
+<span class="fc" id="L22">    private static Point pl2UL = new Point(0, 0);</span>
+<span class="fc" id="L23">    private static Point pl2LL = new Point(25, 0);</span>
+<span class="fc" id="L24">    private static Point pl2UR = new Point(0, 25);</span>
+<span class="fc" id="L25">    private static Point pl2LR = new Point(25, 25);</span>
+
+    /**
+     * plectangle construction
+     */
+    @Test
+    public void testSquareConstructorPointsArrayLength() {
+<span class="fc" id="L32">        Point[] pts = pl1.getLocation();</span>
+<span class="fc" id="L33">        Assert.assertEquals(4, pts.length);</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * plectangle construction: points
+     */
+    @Test
+    public void testSquareConstructorCalculatedPoints() {
+<span class="fc" id="L41">        Point[] pts1 = pl1.getLocation();</span>
+<span class="fc" id="L42">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L44">                ShapeUtils.pointInSet(pts1, pl1UL));</span>
+<span class="fc" id="L45">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L47">                ShapeUtils.pointInSet(pts1, pl1LL));</span>
+<span class="fc" id="L48">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L50">                ShapeUtils.pointInSet(pts1, pl1LR));</span>
+<span class="fc" id="L51">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L53">                ShapeUtils.pointInSet(pts1, pl1UR));</span>
+
+<span class="fc" id="L55">        Point[] pts2 = pl2.getLocation();</span>
+<span class="fc" id="L56">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L58">                ShapeUtils.pointInSet(pts2, pl2UL));</span>
+<span class="fc" id="L59">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L61">                ShapeUtils.pointInSet(pts2, pl2LL));</span>
+<span class="fc" id="L62">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L64">                ShapeUtils.pointInSet(pts2, pl2LR));</span>
+<span class="fc" id="L65">        Assert.assertTrue(&quot;Expected point not appearing in Square. Make sure that the points determine the base line &quot;</span>
+                        + &quot;and that the thickness determines the parallel line (ad to y).&quot;,
+<span class="fc" id="L67">                ShapeUtils.pointInSet(pts2, pl2UR));</span>
+<span class="fc" id="L68">    }</span>
+
+    /**
+     * Unfilled constructor
+     */
+    @Test
+    public void testSquareConstructorUnfilled() {
+<span class="fc" id="L75">        Assert.assertFalse(&quot;Square fill incorrect.&quot;, pl2.isFilled());</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * Filled constructor
+     */
+    @Test
+    public void testSquareConstructorFilled() {
+<span class="fc" id="L83">        Assert.assertTrue(&quot;Square fill incorrect.&quot;, pl1.isFilled());</span>
+<span class="fc" id="L84">    }</span>
+
+    /**
+     * Color constructor
+     */
+    @Test
+    public void testSquareConstructorColor() {
+<span class="fc" id="L91">        Color clr1 = pl1.getColor();</span>
+<span class="fc" id="L92">        Color clr2 = pl2.getColor();</span>
+<span class="fc" id="L93">        Assert.assertEquals(&quot;Square color incorrect.&quot;, Color.BLACK, clr1);</span>
+<span class="fc" id="L94">        Assert.assertEquals(&quot;Square color incorrect.&quot;, Color.CYAN, clr2);</span>
+<span class="fc" id="L95">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>TestRunner (Apr 16, 2019 9:49:51 PM)</div></body></html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DrawFrame.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestRunner (Apr 16, 2019 9:49:51 PM)</a> &gt; <a href="../../index.html" class="el_group">lab10</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">DrawFrame.java</span></div><h1>DrawFrame.java</h1><pre class="source lang-java linenums">import javax.swing.*;
+import java.awt.*;
+
+public class DrawFrame extends JFrame {
+    private static DrawPanel drawPanel;
+
+    public DrawFrame(String title) {
+<span class="nc" id="L8">        super(title);</span>
+<span class="nc" id="L9">        drawPanel = new DrawPanel();</span>
+<span class="nc" id="L10">    }</span>
+
+    public static void main(String[] args) throws InterruptedException {
+<span class="nc" id="L13">        DrawFrame abc = new DrawFrame(&quot;Hello&quot;);</span>
+<span class="nc" id="L14">        abc.setDefaultCloseOperation(EXIT_ON_CLOSE);</span>
+<span class="nc" id="L15">        abc.setSize(300, 300);</span>
+<span class="nc" id="L16">        abc.setLocationRelativeTo(null);</span>
+<span class="nc" id="L17">        abc.setVisible(true);</span>
+<span class="nc" id="L18">        drawPanel = new DrawPanel();</span>
+<span class="nc" id="L19">        abc.add(drawPanel);</span>
+
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        boolean bool = Math.random() &gt; .5;</span>
+<span class="nc" id="L22">        drawPanel.addShape(new Sinusoid(Color.BLACK, new Point(100, 100), 100, 10, 100));</span>
+<span class="nc" id="L23">        drawPanel.addShape(new RightTriangle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L24">        drawPanel.addShape(new IsoscelesTriangle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L25">        drawPanel.addShape(new Square(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L26">        drawPanel.addShape(new Rectangle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L27">        drawPanel.addShape(new Oval(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L28">        drawPanel.addShape(new Circle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L29">        drawPanel.addShape(new Diamond(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L30">        drawPanel.addShape(new PolyLine(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+
+<span class="nc" id="L32">        abc.revalidate();</span>
+<span class="nc" id="L33">        abc.repaint();</span>
+<span class="nc" id="L34">        int i = 0;</span>
+<span class="nc" id="L35">        Thread.sleep(100);</span>
+<span class="nc" id="L36">        while (true) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (i % 50 == 0) {</span>
+<span class="nc" id="L38">                drawPanel.clearShapes();</span>
+            }
+<span class="nc" id="L40">            int rand = (int) (Math.random() * 10);</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            bool = Math.random() &gt; .5;</span>
+<span class="nc bnc" id="L42" title="All 10 branches missed.">            switch (rand) {</span>
+                case 1:
+<span class="nc" id="L44">                    drawPanel.addShape(new Sinusoid(Color.BLACK, new Point(100, 100), 100, 10, 100));</span>
+<span class="nc" id="L45">                    break;</span>
+                case 2:
+<span class="nc" id="L47">                    drawPanel.addShape(new RightTriangle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L48">                    break;</span>
+                case 3:
+<span class="nc" id="L50">                    drawPanel.addShape(new IsoscelesTriangle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L51">                    break;</span>
+                case 4:
+<span class="nc" id="L53">                    drawPanel.addShape(new Square(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L54">                    break;</span>
+                case 5:
+<span class="nc" id="L56">                    drawPanel.addShape(new Rectangle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L57">                    break;</span>
+                case 6:
+<span class="nc" id="L59">                    drawPanel.addShape(new Oval(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L60">                    break;</span>
+                case 7:
+<span class="nc" id="L62">                    drawPanel.addShape(new Circle(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L63">                    break;</span>
+                case 8:
+<span class="nc" id="L65">                    drawPanel.addShape(new Diamond(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+<span class="nc" id="L66">                    break;</span>
+                case 9:
+<span class="nc" id="L68">                    drawPanel.addShape(new PolyLine(new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), new Point((int) (Math.random() * 500), (int) (Math.random() * 500)), (int) (Math.random() * 500), Color.getHSBColor((float) Math.random(), (float) Math.random(), (float) Math.random()), bool));</span>
+                    break;
+            }
+<span class="nc" id="L71">            Thread.sleep(50);</span>
+<span class="nc" id="L72">            abc.revalidate();</span>
+<span class="nc" id="L73">            abc.repaint();</span>
+<span class="nc" id="L74">            i++;</span>
+        }
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>TestRunner (Apr 16, 2019 9:49:51 PM)</div></body></html>

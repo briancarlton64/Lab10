@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ShapeUtils.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">TestRunner (Apr 16, 2019 9:49:51 PM)</a> &gt; <a href="../../index.html" class="el_group">lab10</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">ShapeUtils.java</span></div><h1>ShapeUtils.java</h1><pre class="source lang-java linenums">import java.awt.Point;
+
+/**
+ * DO NOT CHANGE
+ * 
+ * Utility class for Shapes to assist with determining 
+ * the relative location of points
+ * Used in tests
+ * 
+ * @author CS2334 Programming Structures and Abstractions
+ * @version October 26, 2017
+ * Lab 10
+ */
+<span class="nc" id="L14">public class ShapeUtils</span>
+{
+    /**
+     * Return true if a point is in a set of points.
+     * 
+     * @param points Set of points
+     * @param point Point in question
+     * @return true if the point in question is equal to one of the points in the set
+     */
+    public static boolean pointInSet(Point[] points, Point point)
+    {
+        // Loop through the points in the set
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for (int i = 0; i &lt; points.length; ++i)</span>
+        {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">            if (point.equals(points[i]))</span>
+            {
+                // Match!
+<span class="fc" id="L31">                return true;</span>
+            }
+        }
+        // No match
+<span class="fc" id="L35">        return false;</span>
+    }
+    
+    /**
+     * Return true if a point is in a set of points.
+     * 
+     * @param points Set of points
+     * @param point Point in question
+     * @param delta point must be within delta of each point (along each dimension)
+     * @return true if the point is within some delta distance of a point in the set
+     */
+    public static boolean pointInSet(Point[] points, Point point, int delta)
+    {
+        // Loop through the points in the set
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        for (int i = 0; i &lt; points.length; ++i)</span>
+        {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">            if (Math.abs(point.getX() - points[i].getX()) &lt;= delta</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                    &amp;&amp; Math.abs(point.getY() - points[i].getY()) &lt;= delta)</span>
+            {
+                // Match!
+<span class="fc" id="L55">                return true;</span>
+            }
+        }
+        // No match
+<span class="nc" id="L59">        return false;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span>TestRunner (Apr 16, 2019 9:49:51 PM)</div></body></html>
