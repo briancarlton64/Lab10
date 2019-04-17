@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class DrawFrame extends JFrame {
+    /**
+     * A aggregated DrawPanel which we draw to.
+     */
     private static DrawPanel drawPanel;
 
     public DrawFrame(String title) {
@@ -9,7 +13,7 @@ public class DrawFrame extends JFrame {
         drawPanel = new DrawPanel();
     }
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
         DrawFrame abc = new DrawFrame("Hello");
         abc.setDefaultCloseOperation(EXIT_ON_CLOSE);
         abc.setSize(300, 300);
@@ -35,7 +39,9 @@ public class DrawFrame extends JFrame {
         Thread.sleep(100);
         while (true) {
             if (i % 50 == 0) {
+                PanelToImage.makePanelPNGImage(drawPanel,"Output"+i);
                 drawPanel.clearShapes();
+
             }
             int rand = (int) (Math.random() * 10);
             bool = Math.random() > .5;
